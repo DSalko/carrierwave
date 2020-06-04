@@ -339,7 +339,7 @@ module CarrierWave
           if new_file.is_a?(self.class) && false # fix by DSalko for DigitalOcean - TODO: review
             new_file.copy_to(path)
           else
-            fog_file = new_file.to_file
+            fog_file = new_file.to_file rescue nil
             @content_type ||= new_file.content_type
             @file = directory.files.create({
               :body         => fog_file ? fog_file : new_file.read,
