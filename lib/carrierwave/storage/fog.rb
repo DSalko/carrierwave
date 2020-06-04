@@ -336,7 +336,7 @@ module CarrierWave
         #
         # [Boolean] true on success or raises error
         def store(new_file)
-          if new_file.is_a?(self.class)
+          if new_file.is_a?(self.class) && false # fix by DSalko for DigitalOcean - TODO: review
             new_file.copy_to(path)
           else
             fog_file = new_file.to_file
